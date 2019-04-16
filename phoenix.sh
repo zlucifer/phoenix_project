@@ -72,8 +72,7 @@ echo Mohon tunggu..
 load
 clear
 intro
-response=`curl -H "$zlucifer" -m "60" -s -o /dev/null -w "%{http_code}" $cek`
-
+response=`curl -H "$zlucifer" -m "240" -s -o /dev/null -w "%{http_code}" $cek`
 #echo $response
 if [[ $response != *302* ]]; then
     echo
