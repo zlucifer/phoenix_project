@@ -63,8 +63,8 @@ load(){
         sleep 0.2
     done
 }
-get_url=$(curl -s http://zlucifer.com/api/phoenix_api_1.php)
-get_url2=$(curl -s http://zlucifer.com/api/phoenix_api_2.php)
+get_url=$(curl -s http://zlucifer.com/api/hackbae.php?request=phoenix_api)
+get_url2=$(curl -s http://zlucifer.com/api/hackbae.php?request=phoenix)
 cek='curl -s '$get_url2 # check status
 zlucifer="user-agent: zlucifer"
 clear
@@ -96,22 +96,22 @@ else
             echo "Apakah username $target sudah benar?"
             echo y/n?
             read confirm
-        echo
+            echo
         if [ $confirm = "y" ]; then
                 echo Melakukan pencarian password username : $target
                 load
-            echo
-            echo
-                    echo "Jangan close aplikasi sebelum scan selesai"            
-                    echo "========================================"
+                echo
+                echo
+                echo "Jangan close aplikasi sebelum scan selesai"            
+                echo "========================================"
                 cek_target=`curl -s $get_url/instagram_phoenix.php?cari=$target`
-                    echo -e $cek_target
-            echo "======================================="
-                    echo " Gunakan tools dengan bijak"
-                    echo " -zLucifer"
-                    echo "======================================="
+                echo -e $cek_target
+                echo "======================================="
+                echo " Gunakan tools dengan bijak"
+                echo " -zLucifer"
+                echo "======================================="
             else
-                    echo "Kesalahan"
+                echo "Kesalahan"
             fi            
     else
             echo "Terimakasih sudah menggunakan Phoenix Project"
